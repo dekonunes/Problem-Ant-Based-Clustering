@@ -1,3 +1,10 @@
+/*
+ * main.h
+ *
+ *  Created on: 20 de ago de 2015
+ *      Author: udesc
+ */
+
 #ifndef MAIN_H_
 #define MAIN_H_
 
@@ -9,7 +16,8 @@
 #include <string>
 #include <unistd.h>
 #include <math.h>
-#define TEMPO 800000
+#include <SFML/Graphics.hpp>
+#define TEMPO 80000
 #define resolucao 640
 using namespace std;
 
@@ -21,17 +29,22 @@ struct formiga {
 	float tamVisao;
 };
 
-void povoarFormigasTeste(vector<formiga> *,int);
-void povoarItensMatrizTeste(int , int , int );
+enum Color {
+	NONE = 0, BLACK, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE
+};
 
-void povoarItensMatriz(int, int, int);
-void povoarFormigas(vector<formiga> *, int, int, int, int);
-void mostrarMatriz(int, int);
-void montarMatriz(int, int);
-void movimentoDasFormigas(formiga *, int, int, int);
+void povoarItensMatriz(vector<vector<int> > *, int, int, int);
+void povoarFormigas(vector<vector<int> > *, vector<formiga> *, int, int, int, int);
+void mostrarMatriz(vector<vector<int> > *, int, int);
+void montarMatriz(vector<vector<int> > *, int, int);
+void movimentoDasFormigas(vector<vector<int> > *, formiga *, int, int, int);
 float visibilidadeItem(vector<vector<int> >, formiga, int, int);
-void probabilidadeItens(formiga, int);
-void mostrarMatrizLimpa(int, int);
-void movimentoFinal(formiga *, int, int, int);
+void probabilidadeItens(vector<vector<int> > *, formiga, int);
+void mostrarMatrizLimpa(vector<vector<int> > *, int, int);
+void movimentoFinal(vector<vector<int> > *,formiga *, int, int, int);
+void interfaceGrafica(vector<vector<int> > *, vector<formiga> *, int, int, int, int);
+void update(vector<vector<int> > *, vector<formiga> *, int, int, int, sf::RenderWindow *, std::vector<std::vector<sf::RectangleShape> > *);
+void updateFinal(vector<vector<int> > *, formiga *, int, int, int, sf::RenderWindow *, std::vector<std::vector<sf::RectangleShape> > *);
+void updateColor(vector<vector<int> > *, formiga *, int, int, int, std::vector<std::vector<sf::RectangleShape> > *, int);
 
 #endif /* MAIN_H_ */
